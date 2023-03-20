@@ -1,0 +1,56 @@
+
+
+
+
+
+footer {
+    background-color: #29394a;
+    padding: 30px 0;
+    width: 100%;
+  }
+  
+  .info{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+  }
+  .info-team{
+    width: 33%;
+  }
+  .info-contacts{
+    width: 33%;
+  }
+  .info-social{
+    width: 33%;
+  }
+  
+  footer h3 {
+    color: #bdc3c7;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  footer p, footer ul {
+    color: #666;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  footer ul li {
+    margin-bottom: 10px;
+  }
+  
+  footer ul li a {
+    color: #666;
+    text-decoration: none;
+  }
+  
+  footer ul li a:hover {
+    color: #333;
+  }
