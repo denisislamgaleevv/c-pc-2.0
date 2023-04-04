@@ -2,15 +2,18 @@ import './Main.css'
 import {React, useState} from "react";
 import { processors } from './computer_modules/processors';
 import {motherboards} from './computer_modules/motherboards';
+import { Navigate, Route, Routes } from 'react-router-dom';
 export const Main =()=> {
     const [cartArr, setCartArr] = useState([])
+    const [stage, setStage] = useState(1) //стадии выбора 
     const addToCart = (elem) =>{
      
       let copy = Object.assign([], cartArr);
       copy.push(elem);
       
       setCartArr(copy);
-      console.log(cartArr)
+      setStage(stage+1)
+
       
     }
     const getSocket = () =>{
@@ -29,7 +32,7 @@ export const Main =()=> {
         <a href="#mat" class="start-config">Начать сборку</a>
       </div>
     </section>
-    
+     {stage === 1? 
     <div class="choosing-pc" id="mat">
       
       <div class="container">
@@ -39,6 +42,7 @@ export const Main =()=> {
         <div class="subtitle">
           <p>Вам предоставленные 6 видов материнских плат, выберите ту которая больше всего вам подходит</p>
         </div>
+        
         <div class="all-cards" >
           
          { motherboards.map((elem) =>
@@ -53,15 +57,16 @@ export const Main =()=> {
               <div class="M2-connectors">Кол-во разъемов M.2: {elem['M2-connectors']}</div>
             </div>
             <div class="description">{elem.description}</div>
-            <div class="choosing-div"  ><a href="#proc" class="choosing" onClick={()=>addToCart(elem)} >Выбрать</a></div>
+            <div class="choosing-div"  ><a href="/#proc" class="choosing" onClick={()=>addToCart(elem)} >Выбрать</a></div>
          
           </div>
           ) 
          } 
         </div>
       </div>
-    </div>
-
+    </div>  
+    : <></> }
+    {stage === 2?
     <div class="choosing-pc" id="proc" data-slider="itc-slider">
       <div class="container">
         <div class="title">
@@ -98,7 +103,9 @@ export const Main =()=> {
        
         </div>
       
-        </div>
+        </div>    
+          : <></> }
+        
         { cartArr.map((elem) =>
 
           <h3> {elem.name} </h3> 

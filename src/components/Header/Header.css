@@ -32,6 +32,9 @@
   .navbar-menu li a:hover{
     opacity: 1;
   }
+  .navbar-menu li a:active{
+    color: #e75343;
+  }
   .navbar-wrap{
     display: flex;
     flex-flow: row nowrap;
