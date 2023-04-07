@@ -169,4 +169,80 @@
   .prev {
     margin-right: 10px;
   }
+  .Basket {
+    background-color: #222f3e;
+    color: #fff;
+    border: 1px solid #333;
+    margin: 20px;
+    border: #333;
+  }
   
+  .Basket h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  .Basket table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px;
+  }
+  
+  .Basket table th,
+  .Basket table td {
+    border: none;
+    padding: 10px 20px;
+    text-align: left;
+  }
+  
+  .Basket table th {
+    font-weight: bold;
+  }
+  
+  .total{
+    display: flex;
+    font-size: 30px;
+    margin: 10px;
+  }
+  
+  .Basket button.checkout-button {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+  }
+  
+  .Basket button.checkout-button:hover {
+    background-color: #f76a3f;
+  }
+  
+  .Basket table th.remove-item {
+    text-align: center;
+  }
+  
+  .Basket table th.remove-item a {
+    color: #f44336;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .Basket table th.remove-item a:hover {
+    color: #ff5722;
+  }
+  
+  .Basket table td.image {
+    width: 80px;
+  }
+  
+  .Basket table td.image img {
+    max-width: 100%;
+  }
+  
+  .Baskettotal table td.product-name {
+    font-weight: bold;
+  }

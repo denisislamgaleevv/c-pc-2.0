@@ -8,6 +8,7 @@ import { Contacts } from './components/Contacts/Contacts';
 import { About } from './components/About/About';
 import { Portfolio } from './components/Portfolio/Portfolio';
 import { Reviews } from './components/Reviews/Reviews';
+ 
 function App() {
   return (
     <div className="App">

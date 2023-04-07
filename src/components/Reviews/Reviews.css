@@ -1,0 +1,53 @@
+  form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  form input,
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  form textarea {
+    resize: vertical;
+  }
+  
+  form button[type="submit"] {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .reviews {
+    margin-top: 40px;
+  }
+  
+  .review {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .review h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .review .rating {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .review .message {
+    margin-top: 10px;
+  }
+  

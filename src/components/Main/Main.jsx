@@ -2,7 +2,8 @@ import './Main.css'
 import {React, useState} from "react";
 import { processors } from './computer_modules/processors';
 import {motherboards} from './computer_modules/motherboards';
-import { Navigate, Route, Routes } from 'react-router-dom';
+ 
+//import {Basket} from './Basket/Basket';
 export const Main =()=> {
     const [cartArr, setCartArr] = useState([])
     const [stage, setStage] = useState(1) //стадии выбора 
@@ -20,6 +21,24 @@ export const Main =()=> {
       if (cartArr[0] != undefined)
         return cartArr[0].socket
     }
+    function getSum() {
+      let sum = 0;
+      cartArr.forEach(function(item){
+          sum += item.price
+      })
+      return sum;
+    }
+    const cleanBasket = ()=>{
+      
+      setCartArr([]);
+      setStage(1)
+
+    }
+    const startAssembly = ()=>{
+      setCartArr([]);
+      setStage(1)
+
+    }
     return (
     
        <>
@@ -29,7 +48,7 @@ export const Main =()=> {
       <div class="container">
         <h1>Добро пожаловать на наш сайт</h1>
         <p>Мы предлагаем широкий выбор комплектующих для сборки вашего компьютера. Наша команда экспертов всегда готова помочь вам с выбором и ответить на все ваши вопросы. Начните свою сборку уже сегодня!</p>
-        <a href="#mat" class="start-config">Начать сборку</a>
+        <a href="#mat" class="start-config" onClick = {startAssembly}>Начать сборку</a>
       </div>
     </section>
      {stage === 1? 
@@ -40,7 +59,7 @@ export const Main =()=> {
           <h1>Вебирите материнскую плату</h1>
         </div>
         <div class="subtitle">
-          <p>Вам предоставленные 6 видов материнских плат, выберите ту которая больше всего вам подходит</p>
+          <p>Вам предоставлены {motherboards.length} видов материнских плат, выберите ту которая больше всего вам подходит</p>
         </div>
         
         <div class="all-cards" >
@@ -73,7 +92,7 @@ export const Main =()=> {
           <h1>Выберите процессор</h1>
         </div>
         <div class="subtitle">
-          <p>Вам предоставлено 6 видов процессоров, выберите тот, который больше всего вам подходит</p>
+          <p>Вам предоставлены {processors.length} видов процессоров, выберите тот, который больше всего вам подходит (показаны совместимые)  </p>
         </div>
         <div class="all-cards">
          
@@ -94,7 +113,7 @@ export const Main =()=> {
               <div class="TDP">TDP: {elem.tdp} Вт</div>
             </div>
             <div class="description">{elem.description}</div>
-            <div class="choosing-div"><a href="#" class="choosing" onClick={()=>addToCart(elem)} >Выбрать</a></div>
+            <div class="choosing-div"><a href="/#proc" class="choosing" onClick={()=>addToCart(elem)} >Выбрать</a></div>
           </div>)
          }  
          }
@@ -105,11 +124,40 @@ export const Main =()=> {
       
         </div>    
           : <></> }
-        
-        { cartArr.map((elem) =>
-
-          <h3> {elem.name} </h3> 
-        )}
+       <div class="Basket">
+        <h2>Корзина</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Товар</th>
+              <th>Цена</th>
+              <th class="remove-item"><a onClick={cleanBasket}href="/#proc">Очистить корзину</a></th>
+              <th></th>
+            </tr>
+          </thead>
+       
+          <tbody>
+          
+              {
+                cartArr.map((elem)=>
+                <tr>
+                <td class="product-name">{elem.name}</td>
+                <td>${elem.price}</td>
+               
+                </tr>
+                )
+                
+            }
+             
+              
+          </tbody>
+        </table>
+        <div class="total">
+          <p>Итого:</p>
+          <h2>${ getSum()}</h2>
+        </div>
+        <button class="checkout-button">Оформить заказ</button>
+      </div>
 
        </>
     )
