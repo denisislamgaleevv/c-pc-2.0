@@ -6,7 +6,7 @@
   form input,
   form select,
   form textarea {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     border: none;
     border-radius: 5px;

@@ -5,6 +5,22 @@ import moment from 'moment';
 //https://634969360b382d796c85cba6.mockapi.io/posts
 export const Reviews =()=> {
     const [reviewsArr, setReviewsArr] = useState([])
+    const [name, setName]= useState('')
+    const [email, setEmail]= useState('')
+    const [rating, setRating]= useState(0)
+    const [message, setMessage]= useState('')
+    const handleNameChange=(e)=>{
+      setName(e.target.value)
+     }
+    const handleEmailChange=(e)=>{
+      setEmail(e.target.value)
+     }
+    const handleRatingChange=(e)=>{
+      setRating(e.target.value)
+     }
+    const handleMessageChange=(e)=>{
+      setMessage(e.target.value)
+     }
     useEffect(()=>{
       axios.get("https://634969360b382d796c85cba6.mockapi.io/posts")
       .then((responce)=>{
@@ -17,14 +33,21 @@ export const Reviews =()=> {
     }, [])
     const addNewReview = () =>{
       const treview = {
-        name: '', 
-        email:'', 
-        rating:0,
-        message:'', 
+        name: name, 
+        email: email, 
+        rating: rating,
+        message: message, 
         id: reviewsArr.length+1, 
-        time:      String(moment().format('MMMM Do YYYY'))
+        data: String(moment().format('MMMM Do YYYY'))
       }
-
+      
+      axios.post("https://634969360b382d796c85cba6.mockapi.io/posts", treview)
+      .then((responce)=>{
+        alert('Отзыв создан', responce.data)
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
     }
     
     return (
@@ -34,15 +57,15 @@ export const Reviews =()=> {
           <form>
             <div>
               <label for="name">Имя:</label>
-              <input type="text" id="name" name="name" required/>
+              <input type="text" value={name} onChange={handleNameChange} id="name" name="name" required/>
             </div>
             <div>
               <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required/>
+              <input type="email" value={email} onChange={handleEmailChange} id="email" name="email" required/>
             </div>
             <div>
               <label for="rating">Оценка:</label>
-              <select id="rating" name="rating" required>
+              <select id="rating"  value={rating} onChange={handleRatingChange} name="rating" required>
                 <option value="">Выберите оценку</option>
                 <option value="5">5 звезд</option>
                 <option value="4">4 звезды</option>
@@ -53,10 +76,10 @@ export const Reviews =()=> {
             </div>
             <div>
               <label for="message">Отзыв:</label>
-              <textarea id="message" name="message" rows="4" required></textarea>
+              <textarea id="message"  value={message} onChange={handleMessageChange} name="message" rows="4" required></textarea>
             </div>
             <div>
-              <button type="submit" onClick={addNewReview }>Отправить</button>
+              <button type="submit" onClick={()=>addNewReview }>Отправить</button>
             </div>
           </form>
           {reviewsArr.length ==0 ?   <div class="reviews"><h2>Загрузка отзывов...</h2>  </div>: 
@@ -65,6 +88,7 @@ export const Reviews =()=> {
             {reviewsArr.map((elem) =>
                 <div class="review">
                 <h2>{elem.name}</h2>
+                <p class="message">{elem.data}</p>
                 <p class="rating">Оценка: {elem.rating} звезд</p>
                 <p class="message">{elem.message}</p>
               </div>

@@ -2,7 +2,7 @@ import './Main.css'
 import {React, useState} from "react";
 import { processors } from './computer_modules/processors';
 import {motherboards} from './computer_modules/motherboards';
- 
+import {RAM} from './computer_modules/RAM';
 //import {Basket} from './Basket/Basket';
 export const Main =()=> {
     const [cartArr, setCartArr] = useState([])
@@ -39,6 +39,16 @@ export const Main =()=> {
       setStage(1)
 
     }
+    const goBackEvent = ()=>{
+      if (stage !=1){
+        setStage(stage-1)
+      }
+      let copy = Object.assign([], cartArr);
+      copy.pop()
+      setCartArr(copy);
+    
+
+    }
     return (
     
        <>
@@ -53,8 +63,9 @@ export const Main =()=> {
     </section>
      {stage === 1? 
     <div class="choosing-pc" id="mat">
-      
+       
       <div class="container">
+      <button onClick={goBackEvent}>Назад</button>
         <div class="title">
           <h1>Вебирите материнскую плату</h1>
         </div>
@@ -85,9 +96,10 @@ export const Main =()=> {
       </div>
     </div>  
     : <></> }
-    {stage === 2?
+            {stage === 2?
     <div class="choosing-pc" id="proc" data-slider="itc-slider">
       <div class="container">
+      <button onClick={goBackEvent}>Назад</button>
         <div class="title">
           <h1>Выберите процессор</h1>
         </div>
@@ -117,13 +129,57 @@ export const Main =()=> {
           </div>)
          }  
          }
+         
          )} 
+         
         </div>
        
         </div>
       
         </div>    
           : <></> }
+    {stage === 3?
+    <div class="choosing-pc" id="proc" data-slider="itc-slider">
+
+      <div class="container">
+      <button onClick={goBackEvent}>Назад</button>
+        <div class="title">
+          <h1>Выберите оперативную память</h1>
+        </div>
+        <div class="subtitle">
+          <p>Вам предоставлены {RAM.length} видов оперативной памяти, выберите тот, который больше всего вам подходит (показаны совместимые)  </p>
+        </div>
+        <div class="all-cards">
+         
+        {RAM.map((elem) =>
+        
+          {
+          return( 
+          <div class="card">
+            <div class="name">{elem.name}</div>
+            <div class="img"><img src={elem.photo}/></div>
+            <div class="price">{elem.price} руб.</div>
+            <div class="specifications">
+              <div class="memory-type">Тип памяти: {elem['memory-type']}</div>
+              <div class="capacity">Емкость: {elem.capacity}</div>
+              <div class="speed">Скорость: {elem.speed}</div>
+               
+            </div>
+            <div class="description">{elem.description}</div>
+            <div class="choosing-div"><a href="/#proc" class="choosing" onClick={()=>addToCart(elem)} >Выбрать</a></div>
+          </div>)
+         }  
+         
+         
+         )} 
+         
+        </div>
+       
+        </div>
+      
+        </div>    
+          : <></> }
+    
        <div class="Basket">
         <h2>Корзина</h2>
         <table>
@@ -137,7 +193,7 @@ export const Main =()=> {
           </thead>
        
           <tbody>
-          
+     
               {
                 cartArr.map((elem)=>
                 <tr>
