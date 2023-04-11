@@ -3,6 +3,7 @@ import {React, useState} from "react";
 import { processors } from './computer_modules/processors';
 import {motherboards} from './computer_modules/motherboards';
 import {RAM} from './computer_modules/RAM';
+import Slider from "react-slick";
 //import {Basket} from './Basket/Basket';
 export const Main =()=> {
     const [cartArr, setCartArr] = useState([])
@@ -49,6 +50,15 @@ export const Main =()=> {
     
 
     }
+    {
+      var settings = { //настройки слайдера
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+      };
+    }
     return (
     
        <>
@@ -65,7 +75,7 @@ export const Main =()=> {
     <div class="choosing-pc" id="mat">
        
       <div class="container">
-      <button onClick={goBackEvent}>Назад</button>
+      <div onClick={goBackEvent}  class="choosing" >Назад</div>
         <div class="title">
           <h1>Вебирите материнскую плату</h1>
         </div>
@@ -74,24 +84,30 @@ export const Main =()=> {
         </div>
         
         <div class="all-cards" >
-          
+        <Slider {...settings}> 
          { motherboards.map((elem) =>
-            <div class="card" >
-            <div class="name">{elem.name}</div>
-            <div class="img"><img src={elem.photo}/></div>
-            <div class="price">{elem.price} руб</div>
-            <div class="specifications">
-              <div class="socket">Сокет: {elem.socket}</div>
-              <div class="form-factor">Форм-фактор:  {elem['form-factor']}</div>
-              <div class="memory-slots">Кол-во слотов памяти: {elem['memory-slots']}</div>
-              <div class="M2-connectors">Кол-во разъемов M.2: {elem['M2-connectors']}</div>
-            </div>
-            <div class="description">{elem.description}</div>
-            <div class="choosing-div"  ><a href="/#proc" class="choosing" onClick={()=>addToCart(elem)} >Выбрать</a></div>
-         
+          
+          <div class="card" >
+                
+                
+              
+          <div class="name">{elem.name}</div>
+          <div class="img"><img src={elem.photo}/></div>
+          <div class="price">{elem.price} руб</div>
+          <div class="specifications">
+            <div class="socket">Сокет: {elem.socket}</div>
+            <div class="form-factor">Форм-фактор:  {elem['form-factor']}</div>
+            <div class="memory-slots">Кол-во слотов памяти: {elem['memory-slots']}</div>
+            <div class="M2-connectors">Кол-во разъемов M.2: {elem['M2-connectors']}</div>
           </div>
+          <div class="description">{elem.description}</div>
+          <div class="choosing-div"  ><a href="/#proc" class="choosing" onClick={()=>addToCart(elem)} >Выбрать</a></div>
+           
+        </div>
+          
           ) 
          } 
+          </Slider>
         </div>
       </div>
     </div>  
@@ -99,7 +115,7 @@ export const Main =()=> {
             {stage === 2?
     <div class="choosing-pc" id="proc" data-slider="itc-slider">
       <div class="container">
-      <button onClick={goBackEvent}>Назад</button>
+      <div onClick={goBackEvent}  class="choosing" >Назад</div>
         <div class="title">
           <h1>Выберите процессор</h1>
         </div>
@@ -107,7 +123,7 @@ export const Main =()=> {
           <p>Вам предоставлены {processors.length} видов процессоров, выберите тот, который больше всего вам подходит (показаны совместимые)  </p>
         </div>
         <div class="all-cards">
-         
+       
         {processors.map((elem) =>
         
          { if (getSocket() == elem.socket) {
@@ -130,7 +146,7 @@ export const Main =()=> {
          }  
          }
          
-         )} 
+         )}    
          
         </div>
        
@@ -142,7 +158,7 @@ export const Main =()=> {
     <div class="choosing-pc" id="proc" data-slider="itc-slider">
 
       <div class="container">
-      <button onClick={goBackEvent}>Назад</button>
+      <div onClick={goBackEvent}  class="choosing" >Назад</div>
         <div class="title">
           <h1>Выберите оперативную память</h1>
         </div>
@@ -150,7 +166,7 @@ export const Main =()=> {
           <p>Вам предоставлены {RAM.length} видов оперативной памяти, выберите тот, который больше всего вам подходит (показаны совместимые)  </p>
         </div>
         <div class="all-cards">
-         
+        <Slider {...settings}> 
         {RAM.map((elem) =>
         
           {
@@ -171,7 +187,7 @@ export const Main =()=> {
          }  
          
          
-         )} 
+         )}  </Slider>
          
         </div>
        
