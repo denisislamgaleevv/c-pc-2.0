@@ -167,6 +167,28 @@
     box-shadow: 0 4px 6px rgba(243, 114, 44, 0.3);
     transition: all 0.3s ease-in-out;
   }
+  .goBackIcon{
+    position: absolute;
+    left: 27%;
+    top: 10%;
+    padding: 10px 30px;
+    background-color: #e74c3c;
+    border-radius: 100px;
+    color:#fff;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(243, 114, 44, 0.3);
+    transition: all 0.3s ease-in-out;
+  }
+  .goBackIconCart{
+     
+    padding: 10px 30px;
+    background-color: #e74c3c;
+    border-radius: 100px;
+    color:#fff;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(243, 114, 44, 0.3);
+    transition: all 0.3s ease-in-out;
+  }
   
   .choosing:hover{
     background-color: rgb(252, 144, 105);

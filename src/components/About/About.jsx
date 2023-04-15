@@ -2,6 +2,7 @@ import './About.css'
 import React from "react";
 import  tim from  './images/tim.jpg' 
 import den from './images/den.jpg'
+import gz from './images/gz.jpg'
 export const About =()=> {
     return (
          
@@ -30,6 +31,17 @@ export const About =()=> {
                 </div>
                 <div class="sub-title_1">
                   Дизайнер
+                </div>
+              </div>
+              <div class="item_1">
+                <div class="photo_1">
+                  <img src={gz} alt="tim"/>
+                </div>
+                <div class="title_1">
+                  Гузель
+                </div>
+                <div class="sub-title_1">
+                 Финансовый директор
                 </div>
               </div>
 

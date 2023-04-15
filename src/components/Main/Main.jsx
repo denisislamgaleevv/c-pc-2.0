@@ -4,6 +4,7 @@ import { processors } from './computer_modules/processors';
 import {motherboards} from './computer_modules/motherboards';
 import {RAM} from './computer_modules/RAM';
 import Slider from "react-slick";
+import ReplyIcon from '@mui/icons-material/Reply';
 //import {Basket} from './Basket/Basket';
 export const Main =()=> {
     const [cartArr, setCartArr] = useState([])
@@ -75,7 +76,7 @@ export const Main =()=> {
     <div class="choosing-pc" id="mat">
        
       <div class="container">
-      <div onClick={goBackEvent}  class="choosing" >Назад</div>
+      <ReplyIcon onClick={goBackEvent}  class="goBackIcon" width = '30px' height = '30px'/>
         <div class="title">
           <h1>Вебирите материнскую плату</h1>
         </div>
@@ -114,8 +115,9 @@ export const Main =()=> {
     : <></> }
             {stage === 2?
     <div class="choosing-pc" id="proc" data-slider="itc-slider">
+        <ReplyIcon onClick={goBackEvent}  class="goBackIcon" width = '30px' height = '30px'/>
       <div class="container">
-      <div onClick={goBackEvent}  class="choosing" >Назад</div>
+     
         <div class="title">
           <h1>Выберите процессор</h1>
         </div>
@@ -156,9 +158,9 @@ export const Main =()=> {
           : <></> }
     {stage === 3?
     <div class="choosing-pc" id="proc" data-slider="itc-slider">
-
+      <ReplyIcon onClick={goBackEvent}  class="goBackIcon" width = '30px' height = '30px'/>
       <div class="container">
-      <div onClick={goBackEvent}  class="choosing" >Назад</div>
+     
         <div class="title">
           <h1>Выберите оперативную память</h1>
         </div>
@@ -188,15 +190,20 @@ export const Main =()=> {
          
          
          )}  </Slider>
-         
+          
         </div>
        
         </div>
-      
+        
         </div>    
           : <></> }
-    
+    {cartArr.length != 0 ?  
+        
        <div class="Basket">
+        {
+    stage == 4?
+    <ReplyIcon onClick={goBackEvent}  class="goBackIconCart" width = '30px' height = '30px'/>: <></>
+        }
         <h2>Корзина</h2>
         <table>
           <thead>
@@ -214,7 +221,7 @@ export const Main =()=> {
                 cartArr.map((elem)=>
                 <tr>
                 <td class="product-name">{elem.name}</td>
-                <td>${elem.price}</td>
+                <td> {elem.price} р.</td>
                
                 </tr>
                 )
@@ -224,13 +231,16 @@ export const Main =()=> {
               
           </tbody>
         </table>
+         
         <div class="total">
           <p>Итого:</p>
-          <h2>${ getSum()}</h2>
+          <h2> { getSum()} р.</h2>
         </div>
         <button class="checkout-button">Оформить заказ</button>
-      </div>
-
+        </div> : <></>
+      }
+       
+     
        </>
     )
     }
